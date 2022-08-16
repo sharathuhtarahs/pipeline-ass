@@ -6,7 +6,7 @@ pipeline {
    stages {
     stage ('BUILD') {
        when {
-         expression { params.value == 'BUILD' }
+         anyOf { params.value == 'BUILD' }
      }
       steps {
          echo 'this is build stage'
@@ -14,7 +14,7 @@ pipeline {
           }  
     stage ('DEPLOY') {
       when {
-         expression { params.value == 'DEPLOY' }
+         anyOf { params.value == 'DEPLOY' }
       }
             steps {
               echo 'this is deploy stage'
@@ -22,7 +22,7 @@ pipeline {
               } 
        stage ('TEST') {
         when {
-         expression { params.value == 'TEST' }
+         anyOf { params.value == 'TEST' }
         }
             steps {
                   echo 'this is test'

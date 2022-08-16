@@ -6,7 +6,7 @@ pipeline {
    stages {
     stage ('BUILD') {
        when {
-         expression { params.key == 'BUILD' }
+         expression { params.true == 'BUILD' }
      }
       steps {
          echo 'this is build stage'
@@ -14,7 +14,7 @@ pipeline {
           }  
     stage ('DEPLOY') {
       when {
-         expression { return.params.name == 'DEPLOY' }
+         expression { params.true == 'DEPLOY' }
       }
             steps {
               echo 'this is deploy stage'
@@ -22,7 +22,7 @@ pipeline {
               } 
        stage ('TEST') {
         when {
-         expression { params.key == 'TEST' }
+         expression { params.true == 'TEST' }
         }
             steps {
                   echo 'this is test'

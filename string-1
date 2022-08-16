@@ -5,8 +5,10 @@ pipeline {
 }
    stages {
     stage ('BUILD') {
-       if (params.value == 'BUILD')
-      steps {
+    when {
+         expression { params.DEPLOY }
+      }
+       steps {
          echo 'this is build stage'
             }
           }  

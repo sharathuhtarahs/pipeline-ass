@@ -1,7 +1,7 @@
 pipeline {
   agent any
   parameters {
-  extendedChoice(description: 'multiple strings', multiSelectDelimiter: ',', name: 'string', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_MULTI_SELECT', value: 'BUILD, DEPLOY, TEST', visibleItemCount: 3)
+  extendedChoice(description: 'multiple strings', multiSelectDelimiter: ',', name: 'string', quoteValue: true, saveJSONParameterToFile: false, type: 'PT_MULTI_SELECT', value: 'BUILD, DEPLOY, TEST', visibleItemCount: 3)
 }
    stages {
     stage ('BUILD') {

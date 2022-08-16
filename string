@@ -1,13 +1,13 @@
 pipeline {
   agent any
   parameters {
-    choice(choices: ['BUILD', 'DEPLOY', 'TEST'], description: 'Select the stage you want to run', name: 'running_stage')
-  }
+  extendedChoice description: 'multiple strings', multiSelectDelimiter: ',', name: 'string', quoteValue: true, saveJSONParameterToFile: false, type: 'PT_MULTI_SELECT', value: 'BUILD,DEPLOY,TEST', visibleItemCount: 3
+}
    stages {
     stage ('BUILD') {
   
     when {
-         expression { params.running_stage == 'BUILD' }
+         expression { params.string == 'BUILD' }
      }
       steps {
          echo 'this is build stage'
@@ -15,7 +15,7 @@ pipeline {
           }  
     stage ('DEPLOY') {
       when {
-         expression { params.running_stage == 'DEPLOY' }
+         expression { params.string == 'DEPLOY' }
       }
             steps {
               echo 'this is deploy stage'
@@ -23,7 +23,7 @@ pipeline {
               } 
        stage ('TEST') {
         when {
-         expression { params.running_stage == 'TEST' }
+         expression { params.string == 'TEST' }
         }
             steps {
                   echo 'this is test'

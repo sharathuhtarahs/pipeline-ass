@@ -5,6 +5,7 @@ pipeline {
   }
    stages {
     stage ('BUILD') {
+  
     when {
          expression { params.running_stage == 'BUILD' }
      }

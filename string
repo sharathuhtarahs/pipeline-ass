@@ -6,7 +6,7 @@ pipeline {
    stages {
     stage ('BUILD') {
        when {
-         expression { get.params.key == 'BUILD' }
+         expression { params.key == 'BUILD' }
      }
       steps {
          echo 'this is build stage'

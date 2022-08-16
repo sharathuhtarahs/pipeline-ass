@@ -5,9 +5,8 @@ pipeline {
 }
    stages {
     stage ('BUILD') {
-        def query = 'items.find({ params.string })'
        when {
-         expression { $query == 'BUILD' }
+         expression { params.string.contains(BUILD) }
      }
       steps {
          echo 'this is build stage'

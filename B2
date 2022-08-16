@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+    stages {
+            stage('ALL') {
+                parallel {
+                    
+                    stage('BUILD') {
+                        when {
+                         branch 'master'
+                        }
+                        steps {
+                           echo "this is build stage"
+                         }
+                     
+                    }
+                    stage('DEPLOY') {
+                        when {
+                         branch 'master'
+                        }
+                        steps { 
+                          echo "this is deploy stage"
+                      }
+                    }
+                }
+                
+            }
+    }
+        
+ }

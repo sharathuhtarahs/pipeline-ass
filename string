@@ -5,9 +5,9 @@ pipeline {
 }
    stages {
     stage ('BUILD') {
-        def query = 'items.find({ params.string }).limit(1)'
+        def query = 'items.find({ params.string })'
        when {
-         expression { query == BUILD }
+         expression { query == 'BUILD' }
      }
       steps {
          echo 'this is build stage'

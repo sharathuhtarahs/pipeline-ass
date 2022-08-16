@@ -6,7 +6,7 @@ pipeline {
    stages {
     stage ('BUILD') {
        when {
-         anyOf { params.value == 'BUILD' }
+         anyOf { params.key == 'BUILD' }
      }
       steps {
          echo 'this is build stage'
@@ -14,7 +14,7 @@ pipeline {
           }  
     stage ('DEPLOY') {
       when {
-         anyOf { params.value == 'DEPLOY' }
+         anyOf { params.key == 'DEPLOY' }
       }
             steps {
               echo 'this is deploy stage'
@@ -22,7 +22,7 @@ pipeline {
               } 
        stage ('TEST') {
         when {
-         anyOf { params.value == 'TEST' }
+         anyOf { params.key == 'TEST' }
         }
             steps {
                   echo 'this is test'

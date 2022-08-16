@@ -14,7 +14,7 @@ pipeline {
           }  
     stage ('DEPLOY') {
       when {
-         expression { return{params.string} == 'DEPLOY' }
+         expression { return{params.name} == 'DEPLOY' }
       }
             steps {
               echo 'this is deploy stage'

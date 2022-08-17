@@ -12,9 +12,9 @@ stages {
     stage ('BUILD') {
     when {
     anyOf {
-         expression {  params.Components_To_Deploy == 'BUILD' }
-         expression {  params.Components_To_Deploy == 'BUILD,DEPLOY' }
-         expression {  params.Components_To_Deploy == 'BUILD,TEST' }
+         expression {  params.$COMPONENTS_LIST == 'BUILD' }
+         expression {  params.$COMPONENTS_LIST == 'BUILD,DEPLOY' }
+         expression {  params.$COMPONENTS_LIST == 'BUILD,TEST' }
      }
      }
       steps {
@@ -24,8 +24,8 @@ stages {
     stage ('DEPLOY') {
       when {
       anyOf {
-         expression {  params.Components_To_Deploy == 'DEPLOY' }
-          expression {  params.Components_To_Deploy == 'DEPLOY,TEST' }
+         expression {  params.$COMPONENTS_LIST == 'DEPLOY' }
+          expression {  params.$COMPONENTS_LIST == 'DEPLOY,TEST' }
           }
       }
             steps {
@@ -34,7 +34,7 @@ stages {
               } 
        stage ('TEST') {
         when {
-         expression {  params.Components_To_Deploy == 'TEST' }
+         expression {  params.$COMPONENTS_LIST == 'TEST' }
         }
             steps {
                   echo 'this is test'

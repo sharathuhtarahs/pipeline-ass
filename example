@@ -5,7 +5,7 @@ pipeline {
     extendedChoice (description: 'Components', multiSelectDelimiter: ' ', name: 'string', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_MULTI_SELECT', value: 'BUILD, DEPLOY, TEST', visibleItemCount: 3)
 }
 stages {
-    stage (BUILD, DEPLOY, TEST') {
+    stage (BUILD\nDEPLOY\nTEST) {
     if ( param.string eq BUILD ) {
          echo 'this is build stage'
             } elsif ( param.string eq DEPLOY ) {

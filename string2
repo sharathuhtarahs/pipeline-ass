@@ -3,6 +3,9 @@ pipeline {
   parameters {
   extendedChoice(description: 'multiple strings', multiSelectDelimiter: ',', name: 'string', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_MULTI_SELECT', value: 'BUILD, DEPLOY, TEST', visibleItemCount: 3)
 }
+str = env.ENV.split(',')
+for (string values :str)
+{
   stages {
     stage ('BUILD') {
     when {
@@ -29,4 +32,5 @@ pipeline {
                 }
               }
       } 
+    }
     }

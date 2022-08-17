@@ -5,19 +5,19 @@ pipeline {
 }
   stages {
     stage ('BUILD') {
-    if ( params.string.equals('BUILD') )
+    if ( params.string.equals("BUILD") )
     {
               echo 'this is build stage'
             }
       }
     stage ('DEPLOY') {
-      if ( params.string.equals('DEPLOY') )
+      if ( params.string.equals("DEPLOY") )
       {
                      echo 'this is deploy stage'
                 }
                  } 
        stage ('TEST') {
-            if ( params.string.equals('TEST') )
+            if ( params.string.equals("TEST") )
             {
                             echo 'this is test'
                 }

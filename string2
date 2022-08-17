@@ -6,7 +6,8 @@ pipeline {
   stages {
     stage ('BUILD') {
       steps {
-         return  (params.string)
+      
+         echo "$params.string"
          echo 'this is build stage'
             }
           }  

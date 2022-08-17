@@ -7,8 +7,7 @@ pipeline {
     stage ('BUILD') {
        when {
          anyOf {
-         expression { return params.string == 'BUILD' } 
-         expression { return params.string == 'BUILD, DEPLOY' }
+         expression { return params.string == 'BUILD' && return params.string == 'BUILD, DEPLOY' } 
      }
      }
       steps {

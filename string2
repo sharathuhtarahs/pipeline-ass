@@ -5,28 +5,22 @@ pipeline {
 }
    stages {
     stage ('BUILD') {
-    when {
-    anyOf {
-         expression { return params.string == 'BUILD' }
-         expression { return params.string == 'BUILD, DEPLOY' }
-         expression { return params.string == 'BUILD, TEST' }
-     }
-     }
+    if(params.string == 'BUILD') || (params.string == 'BUILD, DEPLOY') || (params.string == 'BUILD, TEST')
+    {
       steps {
          echo 'this is build stage'
             }
-          }  
+          }
+          }
+          }
     stage ('DEPLOY') {
-      when {
-          anyOf {
-         expression { return params.string == 'DEPLOY' }
-         expression { return params.string == 'DEPLOY, TEST' }
-     }
-      }
+      if(params.string == 'DEPLOY') || (params.string == 'DEPLOY, TEST')
+      {
             steps {
               echo 'this is deploy stage'
                 }
               } 
+       }
        stage ('TEST') {
         when {
           anyOf {

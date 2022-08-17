@@ -18,7 +18,11 @@ pipeline {
           }  
     stage ('DEPLOY') {
       when {
+          anyOf {
          expression { params.string == 'DEPLOY' }
+         expression { params.string == 'DEPLOY,BUILD' }
+         expression { params.string == 'DEPLOY,TEST' }
+     }
       }
             steps {
               echo 'this is deploy stage'
@@ -26,7 +30,11 @@ pipeline {
               } 
        stage ('TEST') {
         when {
+          anyOf {
          expression { params.string == 'TEST' }
+         expression { params.string == 'TEST,BUILD' }
+         expression { params.string == 'TEST,DEPLOY' }
+     }
         }
             steps {
                   echo 'this is test'

@@ -6,30 +6,24 @@ pipeline {
    stages {
     stage ('BUILD') {
        when {
-        anyOf {
-         expression { return params.string == 'BUILD, DEPLOY, TEST' } 
+         expression { return params.string == 'BUILD' } 
      }
-              }
       steps {
          echo 'this is build stage'
             }
           }  
     stage ('DEPLOY') {
        when {
-        anyOf {
-         expression { return params.string == 'BUILD, DEPLOY, TEST' } 
+         expression { return params.string == 'DEPLOY' } 
      }
-              }
             steps {
               echo 'this is deploy stage'
                 }
               } 
        stage ('TEST') {
        when {
-        anyOf {
-         expression { return params.string == 'BUILD, DEPLOY, TEST' } 
+         expression { return params.string == 'TEST' } 
      }
-              }
             steps {
                   echo 'this is test'
                 }

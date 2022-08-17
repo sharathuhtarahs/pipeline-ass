@@ -2,9 +2,8 @@ pipeline {
   agent any
    stages {
     stage ('BUILD') {
-    when {
-         expression { params.running_stage == 'BUILD' }
-      }
+   
+    if(params.STAGE == 'build')
        steps {
          echo 'this is build stage'
             }

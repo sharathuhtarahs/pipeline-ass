@@ -5,7 +5,7 @@ pipeline {
 }
    stages {
     stage ('BUILD') {
-    if(params.string == 'BUILD') || (params.string == 'BUILD, DEPLOY') || (params.string == 'BUILD, TEST')
+    if(return params.string == 'BUILD') || (return params.string == 'BUILD, DEPLOY') || ( return params.string == 'BUILD, TEST')
     {
       steps {
          echo 'this is build stage'
@@ -13,7 +13,7 @@ pipeline {
           }
           }
     stage ('DEPLOY') {
-      if(params.string == 'DEPLOY') || (params.string == 'DEPLOY, TEST')
+      if( return params.string == 'DEPLOY') || ( return params.string == 'DEPLOY, TEST')
       {
             steps {
               echo 'this is deploy stage'

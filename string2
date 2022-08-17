@@ -6,7 +6,7 @@ pipeline {
    stages {
     stage ('BUILD') {
     when {
-    allOf {
+    anyOf {
          expression { return params.string == 'BUILD' }
          expression { return params.string == 'BUILD, DEPLOY' }
          expression { return params.string == 'BUILD, TEST' }
@@ -18,7 +18,7 @@ pipeline {
           }  
     stage ('DEPLOY') {
       when {
-          allOf {
+          anyOf {
          expression { return params.string == 'DEPLOY' }
          expression { return params.string == 'DEPLOY, TEST' }
      }
@@ -29,7 +29,7 @@ pipeline {
               } 
        stage ('TEST') {
         when {
-          allOf {
+          anyOf {
          expression { return params.string == 'TEST' }
 
      }

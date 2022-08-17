@@ -3,8 +3,6 @@ pipeline {
   parameters {
   extendedChoice(description: 'multiple strings', multiSelectDelimiter: ',', name: 'string', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_MULTI_SELECT', value: 'BUILD, DEPLOY, TEST', visibleItemCount: 3)
 }
-for i in string
-{
     stages {
     stage ('BUILD') {
     when {
@@ -39,6 +37,6 @@ for i in string
               }
       } 
     }
-    }
+
     
     

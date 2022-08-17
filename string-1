@@ -1,21 +1,37 @@
 pipeline {
   agent any
+   parameters {
+  extendedChoice(description: 'multiple strings', multiSelectDelimiter: ',', name: 'string', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_MULTI_SELECT', value: 'BUILD, DEPLOY, TEST', visibleItemCount: 3)
+}
    stages {
     stage ('BUILD') {
-   
-    if(params.STAGE == 'build')
+    if(params.string == 'BUILD')
+    {
+    else if (params.string == 'BUILD,DEPLOY')
+    {
+    else if (params.string == 'BUILD,TEST')
+       {
        steps {
          echo 'this is build stage'
             }
-          }  
+          }
+        }
+        }
+        }
     stage ('DEPLOY') {
-      when {
-        expression { params.running_stage == 'DEPLOY' }
-      }
-            steps {
+      if(params.string == 'DEPLOY')
+    {
+    else if (params.string == 'DEPLOY,TEST')
+    {
+    else if (params.string == 'DEPLOY,BUILD')
+       {
+       steps {
               echo 'this is deploy stage'
                 }
               } 
+              }
+              }
+              }
        stage ('TEST') {
         when {
          expression { params.running_stage == 'TEST' }

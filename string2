@@ -5,8 +5,8 @@ pipeline {
 }
   stages {
     stage ('BUILD') {
-    echo $(params.string)
       steps {
+         return  (params.string)
          echo 'this is build stage'
             }
           }  

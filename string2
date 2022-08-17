@@ -7,9 +7,9 @@ pipeline {
     stage ('BUILD') {
     when {
     anyOf {
-         expression { retuen params.string == 'BUILD' }
-         expression { retuen params.string == 'BUILD, DEPLOY' }
-         expression { return params.string == 'BUILD, TEST' }
+         expression {  params.string == 'BUILD' }
+         expression {  params.string == 'BUILD, DEPLOY' }
+         expression {  params.string == 'BUILD, TEST' }
      }
      }
       steps {
@@ -19,8 +19,8 @@ pipeline {
     stage ('DEPLOY') {
       when {
       anyOf {
-         expression { return params.string == 'DEPLOY' }
-          expression { return params.string == 'DEPLOY, TEST' }
+         expression {  params.string == 'DEPLOY' }
+          expression {  params.string == 'DEPLOY, TEST' }
           }
       }
             steps {
@@ -29,7 +29,7 @@ pipeline {
               } 
        stage ('TEST') {
         when {
-         expression { return params.string == 'TEST' }
+         expression {  params.string == 'TEST' }
         }
             steps {
                   echo 'this is test'

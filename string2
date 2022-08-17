@@ -6,23 +6,18 @@ pipeline {
   stages {
     stage ('BUILD') {
       steps {
-      
-         echo "$params.string"
-         echo 'this is build stage'
+         echo 'this stage is $(string)'
             }
           }  
-    //stage ('DEPLOY') {
-    //echo $(params.string)
-            //steps {
-              //echo 'this is deploy stage'
-                //}
-              //} 
-       //stage ('TEST') {
-       //echo $(params.string)
-            //steps {
-                  //echo 'this is test'
-                //}
-              //}
+    stage ('DEPLOY') {
+    steps {
+              echo 'this stage is $(string)'
+                }
+              } 
+              stage ('TEST') {
+              steps {
+                  echo 'this stage is $(string)'
+                }
+              }
       } 
     }
-

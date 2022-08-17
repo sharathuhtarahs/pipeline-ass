@@ -3,15 +3,15 @@ pipeline {
   parameters {
   extendedChoice(description: 'multiple strings', multiSelectDelimiter: ',', name: 'string', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_MULTI_SELECT', value: 'BUILD, DEPLOY, TEST', visibleItemCount: 3)
 }
-  if (params.equal("BUILD"))
+  if (Env.equal("BUILD"))
   {
   echo "build is done"
    }       
-   else if (params.equal("DEPLOY"))
+   else if (Env.equal("DEPLOY"))
    {
    echo "deploy is done"
    }
-   else if (params.equal("TEST"))
+   else if (Env.equal("TEST"))
    {
    echo "tset is done"
    }

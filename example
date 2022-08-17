@@ -1,42 +1,20 @@
 pipeline {
   agent any
-  environment {
-    COMPONENTS_LIST= "BUILD DEPLOY TEST"
-}
-parameters {
-    extendedChoice (description: 'Components', multiSelectDelimiter: ' ', name: 'Components_To_Deploy', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_MULTI_SELECT', value: $COMPONENTS_LIST, visibleItemCount: 3)
+ 
+ parameters {
+    extendedChoice (description: 'Components', multiSelectDelimiter: ' ', name: 'string', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_MULTI_SELECT', value: 'BUILD, DEPLOY, TEST', visibleItemCount: 3)
 }
 stages {
-    stage ('BUILD') {
-    when {
-    anyOf {
-         expression {  params.$COMPONENTS_LIST == 'BUILD' }
-         expression {  params.$COMPONENTS_LIST == 'BUILD,DEPLOY' }
-         expression {  params.$COMPONENTS_LIST == 'BUILD,TEST' }
-     }
-     }
-      steps {
+    stage (BUILD, DEPLOY, TEST') {
+    if ( param.string eq BUILD ) {
          echo 'this is build stage'
-            }
-          }  
-    stage ('DEPLOY') {
-      when {
-      anyOf {
-         expression {  params.$COMPONENTS_LIST == 'DEPLOY' }
-          expression {  params.$COMPONENTS_LIST == 'DEPLOY,TEST' }
+            } elsif ( param.string eq DEPLOY ) {
+            echo 'this is deploy stage'
+            } elsif ( param.string eq TEST ) {
+             echo 'this is test
+          } 
           }
-      }
-            steps {
-              echo 'this is deploy stage'
-                }
-              } 
-       stage ('TEST') {
-        when {
-         expression {  params.$COMPONENTS_LIST == 'TEST' }
-        }
-            steps {
-                  echo 'this is test'
-                }
-              }
-      } 
-    }
+          }
+          }
+    
+       

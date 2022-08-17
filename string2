@@ -17,7 +17,10 @@ pipeline {
           }  
     stage ('DEPLOY') {
       when {
+        anyOf
          expression { return params.string == 'DEPLOY' }
+         expression { return params.string == 'BUILD, DEPLOY' }
+      }
       }
             steps {
               echo 'this is deploy stage'

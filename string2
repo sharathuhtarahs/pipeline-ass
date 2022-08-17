@@ -11,18 +11,18 @@ pipeline {
          echo 'this is build stage'
             }
           }  
-    stage ('DEPLOY') {
-    echo $(params.string)
-            steps {
-              echo 'this is deploy stage'
-                }
-              } 
-       stage ('TEST') {
-       echo $(params.string)
-            steps {
-                  echo 'this is test'
-                }
-              }
+    //stage ('DEPLOY') {
+    //echo $(params.string)
+            //steps {
+              //echo 'this is deploy stage'
+                //}
+              //} 
+       //stage ('TEST') {
+       //echo $(params.string)
+            //steps {
+                  //echo 'this is test'
+                //}
+              //}
       } 
     }
 

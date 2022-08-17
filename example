@@ -1,11 +1,44 @@
 pipeline {
   agent any
   environment {
-    COMPONENTS_LIST= "one two three"
+    COMPONENTS_LIST= "BUILD DEPLOY TEST"
 }
 parameters {
     extendedChoice (description: 'Components', multiSelectDelimiter: ' ', 
     name: 'Components_To_Deploy', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_MULTI_SELECT', 
     value: $COMPONENTS_LIST, visibleItemCount: 3)
 }
-}
+stages {
+    stage ('BUILD') {
+    when {
+    anyOf {
+         expression {  params.Components_To_Deploy == 'BUILD' }
+         expression {  params.Components_To_Deploy == 'BUILD,DEPLOY' }
+         expression {  params.Components_To_Deploy == 'BUILD,TEST' }
+     }
+     }
+      steps {
+         echo 'this is build stage'
+            }
+          }  
+    stage ('DEPLOY') {
+      when {
+      anyOf {
+         expression {  params.Components_To_Deploy == 'DEPLOY' }
+          expression {  params.Components_To_Deploy == 'DEPLOY,TEST' }
+          }
+      }
+            steps {
+              echo 'this is deploy stage'
+                }
+              } 
+       stage ('TEST') {
+        when {
+         expression {  params.Components_To_Deploy == 'TEST' }
+        }
+            steps {
+                  echo 'this is test'
+                }
+              }
+      } 
+    }

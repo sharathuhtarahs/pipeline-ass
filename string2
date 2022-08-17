@@ -12,7 +12,6 @@ pipeline {
             }
           }
           }
-          }
     stage ('DEPLOY') {
       if(params.string == 'DEPLOY') || (params.string == 'DEPLOY, TEST')
       {

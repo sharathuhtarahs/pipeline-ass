@@ -8,8 +8,8 @@ pipeline {
     when {
     anyOf {
          expression {  params.string == 'BUILD' }
-         expression {  params.string == 'BUILD, DEPLOY' }
-         expression {  params.string == 'BUILD, TEST' }
+         expression {  params.string == 'BUILD,DEPLOY' }
+         expression {  params.string == 'BUILD,TEST' }
      }
      }
       steps {
@@ -20,7 +20,7 @@ pipeline {
       when {
       anyOf {
          expression {  params.string == 'DEPLOY' }
-          expression {  params.string == 'DEPLOY, TEST' }
+          expression {  params.string == 'DEPLOY,TEST' }
           }
       }
             steps {

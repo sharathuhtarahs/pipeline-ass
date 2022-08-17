@@ -5,28 +5,28 @@ pipeline {
 }
    stages {
     stage ('BUILD') {
-       when {
-         expression { return params.string == 'BUILD' } 
-     }
+      if ( return params.equals("BUILD"))
+      {
       steps {
          echo 'this is build stage'
             }
-          }  
+       }
+       }  
     stage ('DEPLOY') {
-       when {
-         expression { return params.string == 'DEPLOY' } 
-     }
+       if ( return params.equals("DEPLOY"))
+       {
             steps {
               echo 'this is deploy stage'
                 }
-              } 
+          }
+        } 
        stage ('TEST') {
-       when {
-         expression { return params.string == 'TEST' } 
-     }
+        if ( return params.equals("DEPLOY"))
+        {
             steps {
                   echo 'this is test'
                 }
               }
       } 
+      }
     }

@@ -3,7 +3,7 @@ pipeline {
  environment {
         EXTENDED = 'BUILD,DEPLOY,TEST'
                    }
-for i in $EXTENDED
+for $EXTENDED
 {
 stages {
     stage ('BUILD') {

@@ -1,9 +1,6 @@
 pipeline {
   agent any
- environment {
-        EXTENDED = 'BUILD,DEPLOY,TEST'
-                   }
-for ($EXTENDED)
+for (variable BUILD;DEPLOY;TEST)
 {
 stages {
     stage ('BUILD') {

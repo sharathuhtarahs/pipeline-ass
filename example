@@ -1,20 +1,38 @@
 pipeline {
   agent any
- 
- parameters {
-    extendedChoice (description: 'Components', multiSelectDelimiter: ' ', name: 'string', quoteValue: false, saveJSONParameterToFile: false, type: 'PT_MULTI_SELECT', value: 'BUILD, DEPLOY, TEST', visibleItemCount: 3)
-}
+ environment {
+        EXTENDED = 'BUILD,DEPLOY,TEST'
+                   }
+for i in $EXTENDED
+{
 stages {
-    stage (BUILD \nDEPLOY \nTEST) {
-    if ( param.string eq BUILD ) {
+    stage ('BUILD') {
+    when {
+         expression {  params.string == 'BUILD' }
+              }
+      steps {
          echo 'this is build stage'
-            } elsif ( param.string eq DEPLOY ) {
-            echo 'this is deploy stage'
-            } elsif ( param.string eq TEST ) {
-             echo 'this is test
-          } 
-          }
-          }
-          }
+            }
+          }  
+    stage ('DEPLOY') {
+      when {
+               expression {  params.string == 'DEPLOY' }
+                }
+            steps {
+              echo 'this is deploy stage'
+                }
+              } 
+       stage ('TEST') {
+        when {
+         expression {  params.string == 'TEST' }
+        }
+            steps {
+                  echo 'this is test'
+                }
+              }
+      } 
+    }
+}
+    
     
        
